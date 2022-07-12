@@ -1,9 +1,17 @@
 {
+  "items": [
+    { "id": 1, "title": "item1", "category": "kate1" },
+    { "id": 2, "title": "item2", "category": "kate1" },
+    { "id": 3, "title": "item3", "category": "kate1" },
+    { "id": 4, "title": "item4", "category": "kate2" },
+    { "id": 5, "title": "item5", "category": "kate2" },
+    { "id": 6, "title": "item6", "category": "kate2" }
+  ],
   "posts": [
     { "id": 1, "title": "json-server", "author": "typicode" }
   ],
   "comments": [
     { "id": 1, "body": "some comment", "postId": 1 }
   ],
-  "profile": { "name": "typicode" }
+  "profile": { "name": "cavim" }
 }

@@ -1,5 +1,13 @@
 <template>
   <div>
+    <div style="height: 50px" class="bg-info" />
+    <div style="height: 195px">
+      <b-row>
+        <b-col lg="5">
+          <input type="" />
+        </b-col>
+      </b-row>
+    </div>
     <Nuxt />
   </div>
 </template>

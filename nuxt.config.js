@@ -1,4 +1,10 @@
+import * as dotent from 'dotenv'
+
+const env = dotent.config()
 export default {
+  // Disable server-side rendering: https://go.nuxtjs.dev/ssr-mode
+  ssr: false,
+  env: { ...env },
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
     title: 'Evermos',
@@ -11,7 +17,7 @@ export default {
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
-  css: [],
+  css: ['@/assets/scss/style.scss'],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [],
@@ -36,7 +42,10 @@ export default {
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
-  axios: {},
+  axios: {
+    baseURL: env.API_URL,
+    https: false,
+  },
 
   // PWA module configuration: https://go.nuxtjs.dev/pwa
   pwa: {

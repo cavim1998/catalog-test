@@ -1,16 +1,46 @@
 <template>
   <div>
-    <div style="height: 50px" class="bg-info" />
+    <div style="height: 50px" class="bg-info mb-3" />
     <div style="height: 195px">
-      <b-row>
-        <b-col lg="5">
-          <input type="" />
+      <b-row align-v="center" class="w-100">
+        <b-col cols="12" lg="4">
+          <div class="text-center">
+            <input v-model="textSearch" type="text" />
+            <input type="button" value="Search" />
+          </div>
         </b-col>
+        <b-col cols="12" lg="4" class="text-sm-center">
+          <p style="font-size: 40px">Catalog</p>
+        </b-col>
+        <b-col cols="12" lg="4" class="d-sm-none"></b-col>
       </b-row>
+      <div class="navbar">
+        <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
+        <b-collapse id="nav-collapse" is-nav>
+          <b-navbar-nav>
+            <b-nav-item href="#" @click="goTo('/')">Home</b-nav-item>
+          </b-navbar-nav>
+        </b-collapse>
+      </div>
     </div>
     <Nuxt />
   </div>
 </template>
+
+<script>
+export default {
+  data() {
+    return {
+      textSearch: null,
+    }
+  },
+  methods: {
+    goTo(url) {
+      this.$router.push(url)
+    },
+  },
+}
+</script>
 
 <style>
 html {

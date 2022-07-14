@@ -9,21 +9,56 @@
             <input type="button" value="Search" />
           </div>
         </b-col>
-        <b-col cols="12" lg="4" class="text-sm-center">
-          <p style="font-size: 40px">Catalog</p>
+        <b-col cols="12" lg="4" class="text-center">
+          <p style="font-size: 40px; font-weight: 200">Catalog</p>
         </b-col>
         <b-col cols="12" lg="4" class="d-sm-none"></b-col>
       </b-row>
-      <div class="navbar">
+      <!-- <div class="navbar">
         <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
         <b-collapse id="nav-collapse" is-nav>
           <b-navbar-nav>
             <b-nav-item href="#" @click="goTo('/')">Home</b-nav-item>
           </b-navbar-nav>
         </b-collapse>
+      </div> -->
+
+      <!-- <b-navbar toggleable="lg" type="light" variant="light">
+        <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
+
+        <b-collapse id="nav-collapse" is-nav>
+          <b-navbar-nav class="mx-auto">
+            <b-nav-item href="#" @click="goTo('/')">Home</b-nav-item>
+            <b-nav-item href="#" disabled>Disabled</b-nav-item>
+          </b-navbar-nav>
+        </b-collapse>
+      </b-navbar> -->
+      <div
+        class="d-flex bg-light justify-content-center mt-3"
+        style="height: 45px"
+      >
+        <div class="menuNavbar" @click="goTo('/')">Home</div>
+        <div class="menuNavbar dropdown-toggle" @click="goTo('/category')">
+          Category
+        </div>
+        <div class="dropdown">
+          <button
+            class="btn-success btn dropdown-toggle"
+            type="button"
+            data-toggle="dropdown"
+          >
+            Click on me
+          </button>
+          <div class="dropdown-menu" style="z-index: 1">
+            <a href="#" class="dropdown-item">Cats</a>
+            <a href="#" class="dropdown-item">Dogs</a>
+            <a href="#" class="dropdown-item">Rabbits</a>
+            <a href="#" class="dropdown-item">Alpacas</a>
+          </div>
+        </div>
       </div>
+      <Nuxt />
     </div>
-    <Nuxt />
   </div>
 </template>
 
@@ -42,7 +77,7 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss" scoped>
 html {
   font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI',
     Roboto, 'Helvetica Neue', Arial, sans-serif;
@@ -89,5 +124,18 @@ html {
 .button--grey:hover {
   color: #fff;
   background-color: #35495e;
+}
+
+.menuNavbar {
+  width: 100px;
+  text-align: center;
+  padding-top: 0.5rem;
+  height: 100%;
+  font-weight: 800;
+}
+
+.menuNavbar:hover {
+  cursor: pointer;
+  color: #2f93a3;
 }
 </style>

@@ -3,7 +3,7 @@
     <div class="height: 245px">
       <div style="height: 50px" class="bg-info pb-3" />
       <div style="height: 195px">
-        <b-row align-v="center" class="w-100 cs-bg-1 m-0">
+        <b-row align-v="center" class="w-100 cs-bg-1 m-0 pt-3">
           <b-col cols="12" lg="4">
             <div class="text-center">
               <input

@@ -11,7 +11,7 @@
         <img
           :src="g.image"
           alt="image item"
-          class="position-relative"
+          class="position-relative img-fluid"
           style="height: 300px"
         />
         <div class="backText font-weight-bold">

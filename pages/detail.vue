@@ -1,5 +1,6 @@
 <template>
   <div class="mt-5">
+    <customLoading :value="loading" />
     <b-row class="mx-auto" style="max-width: 1140px">
       <b-col sm="12" lg="6" class="text-center">
         <img :src="dataItem.image" alt="image item" height="455" />
@@ -23,28 +24,6 @@
         You may also be interested in the following product(s)
       </h1>
       <cardItem :list="interestedItems" />
-      <!-- <div class="d-flex justify-content-center text-center">
-        <div
-          v-for="g of interestedItems"
-          :key="g.id"
-          class="cs-card p-3"
-          style="height: 400px; width: 300px"
-          @click="goTo(g.id)"
-        >
-          <img :src="g.image" height="270" class="mb-3" />
-          <span class="text-truncate">{{ g.title }}</span>
-          <span>${{ g.price }}</span>
-          <StarRating
-            v-model="g.rating.rate"
-            :increment="0.5"
-            :round-start-rating="false"
-            :star-size="20"
-            :glow="5"
-            read-only
-            class="mx-auto"
-          />
-        </div>
-      </div> -->
     </div>
   </div>
 </template>
@@ -66,6 +45,7 @@ export default {
   computed: {
     ...mapState({
       items: (state) => state.app.items,
+      loading: (state) => state.app.loading,
     }),
   },
   created() {

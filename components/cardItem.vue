@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <div class="d-flex flex-wrap align-items-center justify-content-around">
+  <div class="overflow-hidden">
+    <div class="d-flex flex-wrap align-items-center justify-content-center">
       <div v-for="g of list" :key="g.id" class="my-2">
         <div
           class="cs-card p-3"

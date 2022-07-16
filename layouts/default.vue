@@ -1,68 +1,39 @@
 <template>
   <div>
-    <div style="height: 50px" class="bg-info mb-3" />
-    <div style="height: 195px">
-      <b-row align-v="center" class="w-100">
-        <b-col cols="12" lg="4">
-          <div class="text-center">
-            <input v-model="textSearch" type="text" />
-            <input type="button" value="Search" />
-          </div>
-        </b-col>
-        <b-col cols="12" lg="4" class="text-center">
-          <p style="font-size: 40px; font-weight: 200">Catalog</p>
-        </b-col>
-        <b-col cols="12" lg="4" class="d-sm-none"></b-col>
-      </b-row>
-      <!-- <div class="navbar">
-        <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
-        <b-collapse id="nav-collapse" is-nav>
-          <b-navbar-nav>
-            <b-nav-item href="#" @click="goTo('/')">Home</b-nav-item>
-          </b-navbar-nav>
-        </b-collapse>
-      </div> -->
-
-      <!-- <b-navbar toggleable="lg" type="light" variant="light">
-        <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
-
-        <b-collapse id="nav-collapse" is-nav>
-          <b-navbar-nav class="mx-auto">
-            <b-nav-item href="#" @click="goTo('/')">Home</b-nav-item>
-            <b-nav-item href="#" disabled>Disabled</b-nav-item>
-          </b-navbar-nav>
-        </b-collapse>
-      </b-navbar> -->
-      <div
-        class="d-flex bg-light justify-content-center mt-3"
-        style="height: 45px"
-      >
-        <div class="menuNavbar" @click="goTo('/')">Home</div>
-        <div class="menuNavbar dropdown-toggle" @click="goTo('/category')">
-          Category
+    <div class="height: 245px">
+      <div style="height: 50px" class="bg-info pb-3" />
+      <div style="height: 195px">
+        <b-row align-v="center" class="w-100 cs-bg-1 m-0">
+          <b-col cols="12" lg="4">
+            <div class="text-center">
+              <input
+                v-model="textSearch"
+                type="text"
+                @keyup.enter="goToSearch"
+              />
+              <input type="button" value="Search" @click="goToSearch" />
+            </div>
+          </b-col>
+          <b-col cols="12" lg="4" class="text-center">
+            <p style="font-size: 40px; font-weight: 200">Catalog</p>
+          </b-col>
+          <b-col cols="12" lg="4" class="d-sm-none"></b-col>
+        </b-row>
+        <div
+          class="d-flex cs-bg-1 justify-content-center mb-4 border-top"
+          style="height: 45px"
+        >
+          <div class="menuNavbar" @click="goTo('/')">Home</div>
+          <div class="menuNavbar" @click="goTo('/category')">Category</div>
         </div>
-        <div class="dropdown">
-          <button
-            class="btn-success btn dropdown-toggle"
-            type="button"
-            data-toggle="dropdown"
-          >
-            Click on me
-          </button>
-          <div class="dropdown-menu" style="z-index: 1">
-            <a href="#" class="dropdown-item">Cats</a>
-            <a href="#" class="dropdown-item">Dogs</a>
-            <a href="#" class="dropdown-item">Rabbits</a>
-            <a href="#" class="dropdown-item">Alpacas</a>
-          </div>
-        </div>
+        <Nuxt />
       </div>
-      <Nuxt />
     </div>
   </div>
 </template>
 
 <script>
+import { mapMutations } from 'vuex'
 export default {
   data() {
     return {
@@ -71,8 +42,19 @@ export default {
   },
   methods: {
     goTo(url) {
+      this.setSearchKey(null)
+      this.textSearch = null
       this.$router.push(url)
     },
+    goToSearch() {
+      this.setSearch(true)
+      this.setSearchKey(this.textSearch)
+      this.$router.push('/search')
+    },
+    ...mapMutations({
+      setSearch: 'app/setSearch',
+      setSearchKey: 'app/setSearchKey',
+    }),
   },
 }
 </script>
@@ -90,42 +72,6 @@ html {
   box-sizing: border-box;
 }
 
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-  margin: 0;
-}
-
-.button--green {
-  display: inline-block;
-  border-radius: 4px;
-  border: 1px solid #3b8070;
-  color: #3b8070;
-  text-decoration: none;
-  padding: 10px 30px;
-}
-
-.button--green:hover {
-  color: #fff;
-  background-color: #3b8070;
-}
-
-.button--grey {
-  display: inline-block;
-  border-radius: 4px;
-  border: 1px solid #35495e;
-  color: #35495e;
-  text-decoration: none;
-  padding: 10px 30px;
-  margin-left: 15px;
-}
-
-.button--grey:hover {
-  color: #fff;
-  background-color: #35495e;
-}
-
 .menuNavbar {
   width: 100px;
   text-align: center;
@@ -137,5 +83,9 @@ html {
 .menuNavbar:hover {
   cursor: pointer;
   color: #2f93a3;
+}
+
+.cs-bg-1 {
+  background-color: #f7f7f7;
 }
 </style>

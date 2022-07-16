@@ -1,25 +1,38 @@
 <template>
-  <div class="container">
-    <cardItem :list="items" />
+  <div class="container pb-5">
+    <customLoading :value="loading" />
+    <carousel :list="bestItem" />
+    <h4 class="mt-5 text-left">Popular Items</h4>
+    <cardItem />
   </div>
 </template>
 
 <script>
 import { mapState } from 'vuex'
-import cardItem from '@/components/cardItem'
+import cardItem from '@/components/cardItemWithPagination'
+import carousel from '@/components/carousel'
 export default {
   components: {
     cardItem,
+    carousel,
   },
   data() {
-    return {}
+    return {
+      bestItem: [],
+    }
   },
   computed: {
     ...mapState({
       items: (state) => state.app.items,
+      loading: (state) => state.app.loading,
     }),
   },
-  created() {},
+  created() {
+    const filterItem = this.$_.sortBy(this.items, (item) => {
+      return item.rating.count && item.rating.rate
+    }).reverse()
+    this.bestItem = [filterItem[0], filterItem[1], filterItem[2]]
+  },
   methods: {},
 }
 </script>
@@ -28,31 +41,8 @@ export default {
 .container {
   margin: 0 auto;
   min-height: 100vh;
-  display: flex;
   justify-content: center;
   align-items: center;
   text-align: center;
-}
-
-.title {
-  font-family: 'Quicksand', 'Source Sans Pro', -apple-system, BlinkMacSystemFont,
-    'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-  display: block;
-  font-weight: 300;
-  font-size: 100px;
-  color: #35495e;
-  letter-spacing: 1px;
-}
-
-.subtitle {
-  font-weight: 300;
-  font-size: 42px;
-  color: #526488;
-  word-spacing: 5px;
-  padding-bottom: 15px;
-}
-
-.links {
-  padding-top: 15px;
 }
 </style>
